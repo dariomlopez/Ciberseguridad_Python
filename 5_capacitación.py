@@ -33,7 +33,7 @@ while True:
       if nivel >= 90:
         print("El candidato está en el nivel "
               "máximo")
-      elif 75 <= nivel <= 90:
+      elif 75 <= nivel < 90:
         print("El candidato está en el nivel "
               "medio")
       elif 50 <= nivel < 75:
