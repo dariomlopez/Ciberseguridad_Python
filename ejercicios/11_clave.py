@@ -12,12 +12,12 @@ def iniciar():
   comprobar(clave)
 
 def comprobar(clave):
-  for i in clave:
+  for character in clave:
     print(clave)
-    if i == " ":
+    if character == " ":
       print("Lo sentimos, no se permiten espacios en las claves")
       iniciar()
-    elif (i == "<") or (i == ">"):
+    elif (character == "<") or (character == ">"):
       print("Lo sentimos, no se permite scripting")
       iniciar()
     elif (len(clave) < 10) or (len(clave) > 20):
