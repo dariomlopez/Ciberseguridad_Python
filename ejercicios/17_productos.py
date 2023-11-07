@@ -7,8 +7,7 @@ Desarrollar las funciones:
         3) Imprimir los productos con precios comprendidos entre 10 y 15.
 '''
 
-productos = [("Chirimoyas", 2.99),("Kakis", 14.99), ("Patatas", 10.99), ("Kiwis", 1.9),
-             ("Pimientos", 3.99)]
+productos = [("Chirimoyas", 2.99),("Kakis", 14.99), ("Patatas", 10.99), ("Kiwis", 1.9), ("Pimientos", 3.99)]
 
 def imprimir():
   for item in range(len(productos)):
@@ -18,7 +17,6 @@ imprimir()
 
 def precios():
   for nombre, precio in productos:
-    #for precio in item:
       if precio >= 10 and precio <= 15:
         print(f"{nombre} - {precio}")
       
