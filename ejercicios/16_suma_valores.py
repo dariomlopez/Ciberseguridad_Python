@@ -4,7 +4,7 @@ La misma nos debe retornar la suma de dichos valores.
 Debe tener tres parámetros por defecto.
 '''
 
-numeros = []
+'''numeros = []
 
 cuantos_numeros = int(input("Introduzca cuantos numeros quiere para el sumatorio: "))
 
@@ -23,18 +23,13 @@ def sumatorio(array_nums):
   return suma
   
 print(sumatorio(cuantos_numeros))
-
+'''
 ##########################          ##################
 
-num1, num2, num3 = 0, 0, 0
-
-num1 = int(input("Introduce el primero numero: "))
-num2 = int(input("Introduce el segundo numero: "))
-num3 = int(input("Introduce el tercer numero: "))
-
-def sumatorio(valor1, valor2, valor3):
-  suma = 0
+def sumatorio(valor1 = 0, valor2 = 0, valor3 = 0, *valores):
   suma = valor1 + valor2 + valor3
+  for valor in range(len(valores)):
+    suma += valores[valor]
   return suma
 
-print(sumatorio(num1, num2, num3))
+print(sumatorio(30, 22, 11, 40))

@@ -10,16 +10,16 @@ Desarrollar las funciones:
 productos = [("Chirimoyas", 2.99),("Kakis", 14.99), ("Patatas", 10.99), ("Kiwis", 1.9),
              ("Pimientos", 3.99)]
 
-'''def imprimir():
+def imprimir():
   for item in range(len(productos)):
     print(productos[item])
     
-imprimir()'''
+imprimir()
 
 def precios():
-  for index, tuple in enumerate(productos):
+  for nombre, precio in productos:
     #for precio in item:
-      if index == 1 and index >= 10 and index <= 15:
-        print(tuple)
+      if precio >= 10 and precio <= 15:
+        print(f"{nombre} - {precio}")
       
 precios()
