@@ -41,7 +41,7 @@ def ordenarMayor(lista):
   return lista
   
 # ordenar de menor a mayor
-def ordenarMayor(lista):
+def ordenarMenor(lista):
   lista.sort()
   return lista
 
