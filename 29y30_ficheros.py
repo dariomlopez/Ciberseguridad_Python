@@ -16,9 +16,8 @@ archivo.close()
 print(mensaje)
 
 with open("datos.txt", "a") as archivo:
-  archivo.writelines("oaoaoaaoaoaoaoa \n"
-                "oaoaoaoaoaoaoao \n"
-                "aaaaaaaaaaaaaaaa")
+  archivo.write("oaoaoaaoaoaoaoa \n"
+                "oaoaoaoaoaoaoao \n")
 
 with open("datos.txt", "r") as archivo:
   mensaje = archivo.read()
