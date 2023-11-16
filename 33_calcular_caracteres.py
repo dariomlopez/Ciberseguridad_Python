@@ -5,6 +5,7 @@
 fichero = open("macondo.txt", "r")
 caracteres = 0
 for linea in fichero:
+  # imprime en consola el contenido del archivo
   print(linea)
   if "\n" in linea:
     print("\n")
