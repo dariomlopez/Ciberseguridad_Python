@@ -89,4 +89,4 @@ class Agenda:
   
 
 agenda1 = Agenda("Juan", 4567464, "juan@test.es")
-agenda1.cargar_contacto()
+agenda1.menu()
