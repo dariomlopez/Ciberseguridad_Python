@@ -15,5 +15,15 @@ for i in range(5):
   lista_paises.append(pais)
   lista_habitantes.append(habitantes)
 
-lista_paises.sort(), lista_habitantes.sort()
-print(f"{lista_paises} {lista_habitantes}")
+orden_alfab = sorted(zip(lista_paises, lista_habitantes))
+
+print("Orden alfabético:\n")
+for pais, habitantes in orden_alfab:
+  print(f"{pais} - {habitantes}")
+
+orden_habitantes = sorted(zip(lista_paises, lista_habitantes),
+                          key=lambda x: x[1], reverse=True)
+
+print("\nOrden por cantidad de habitantes\n")
+for pais, habitantes in orden_habitantes:
+  print(f"{pais} - {habitantes}")
