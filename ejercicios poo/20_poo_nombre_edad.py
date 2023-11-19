@@ -10,6 +10,7 @@ class Datos:
     self.edad = edad
     # nombre = str(input("Introduce un nombre"))
     # edad = int(input("introduce una edad"))
+  
   def imprimir(self):
     print(f"Nombre: {self.nombre} - {self.edad}")
   
