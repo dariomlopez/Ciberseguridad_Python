@@ -6,9 +6,8 @@ Sentinel — hoy a las 13:01
 
 archivo = open("datos.txt", "w")
 
-archivo.write("If you really really want \n"
-              "what you really really want \n"
-              "if you wanna be my lover\n")
+archivo.write("Tras comenzar el día de manera bastante agitada, \n"
+              "Arthur empezaba a reunir los fragmentos en que había quedado reducida su mente tras las conmociones de la jornada anterior. \n")
 with open("datos.txt", "r") as archivo:
   mensaje = archivo.read()
 
@@ -16,8 +15,8 @@ archivo.close()
 print(mensaje)
 
 with open("datos.txt", "a") as archivo:
-  archivo.write("oaoaoaaoaoaoaoa \n"
-                "oaoaoaoaoaoaoao \n")
+  archivo.write(" Encontró una máquina Nutrimática que le proveyó de una taza de "
+                "plástico llena de un líquido que era casi, pero no del todo, enteramente diferente del té.\n")
 
 with open("datos.txt", "r") as archivo:
   mensaje = archivo.read()

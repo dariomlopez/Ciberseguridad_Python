@@ -8,19 +8,22 @@ Debe mostrar un menú con las siguientes opciones:
 5- Finalizar programa.
 '''
 
-class Agenda:
-  
+class Contacto():
   def __init__(self, nombre, telefono, email):
     self.nombre = nombre
     self.telefono = telefono
     self.email = email
+
+class Agenda:
+  
+  def __init__(self):
     self.lista_agenda = []
     
   def iniciar_agenda(self):
     nombre = str(input("Introduce el nombre: "))
     telefono = int(input("Introduce el teléfono: "))
-    email = str(input("Introduce un email"))
-    contacto = Agenda(nombre, telefono, email)
+    email = str(input("Introduce un email: "))
+    contacto = Contacto(nombre, telefono, email)
     self.lista_agenda.append(contacto)
   
   def cargar_lista(self):
@@ -41,18 +44,18 @@ class Agenda:
         print("Contacto no encontrado")
         
   def modificar(self):
-    nombre = str(input("Ingresa el nombre del contacto a modificar: "))
+    nombre = str(input("Ingresa el nombre del contacto que quieres modificar: "))
     for contacto in self.lista_agenda:
       if contacto.nombre.lower() == nombre.lower():
-        nuevo_nombre = str(input("Introduce el nuevo nombre"))
-        nuevo_tlf = int(input("Introduce el nuevo teléfono"))
-        nuevo_email = str(input("Introduce el nuevo email"))
-        contacto.nombre = nuevo_nombre
-        contacto.telefono = nuevo_tlf
-        contacto.email = nuevo_email
+        nombre = str(input("Introduce el nuevo nombre"))
+        telefono = int(input("Introduce el nuevo teléfono"))
+        email = str(input("Introduce el nuevo email"))
+        contacto.nombre = nombre
+        contacto.telefono = telefono
+        contacto.email = email
         print("Contacto modificado con exito: ")
-        print(f"Nombre: {contacto.nuevo_nombre}, Teléfono: {contacto.nuevo_tlf}, Email:"
-              f" {contacto.nuevo_email}")
+        print(f"Nombre: {contacto.nombre}, Teléfono: {contacto.telefono}, Email:"
+              f" {contacto.email}")
       else:
         print("Contacto no encontrado")
         
@@ -88,5 +91,5 @@ class Agenda:
     print(lista_agenda)
   
 
-agenda1 = Agenda("Juan", 4567464, "juan@test.es")
+agenda1 = Agenda()
 agenda1.menu()
