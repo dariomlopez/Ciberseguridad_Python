@@ -1,5 +1,6 @@
 '''
-Crear una clase que administre una agenda personal. Se debe almacenar el nombre de la persona, teléfono y mail
+Crear una clase que administre una agenda personal.
+- Se debe almacenar el nombre de la persona, teléfono y mail
 Debe mostrar un menú con las siguientes opciones:
 1- Carga de un contacto en la agenda.
 2- Listado completo de la agenda.
@@ -86,10 +87,6 @@ class Agenda:
       else:
         print("Opción invalida. Intentalo de nuevo")
         self.menu()
-      
-  def listado(self, lista_agenda):
-    print(lista_agenda)
-  
 
 agenda1 = Agenda()
 agenda1.menu()
