@@ -6,12 +6,15 @@ class Aplicacion:
   def __init__(self):
 #Ventana principal (la hemos llamado Ventana1)
     self.valor = 1
-    self.ventana1 = tk.Tk()#llamada para creación de ventana
-    self.ventana1.title("Controles de BUTTON y LABEL")#título de la ventana
+#llamada para creación de ventana
+    self.ventana1 = tk.Tk()
+#título de la ventana
+    self.ventana1.title("Controles de BUTTON y LABEL")
 
 #Label (etiqueta o texto) que hemos llamado Label1
-    self.label1 = tk.Label(self.ventana1, text=self.valor)#creación de objeto que
-# variará su valor
+#creación de objeto que variará su valor
+    self.label1 = tk.Label(self.ventana1, text=self.valor)
+
     self.label1.grid(column=0, row=0)#como tenemos muchas formas de pintar en el monitor, utilizamos un grid (rejilla)
     self.label1.configure(foreground="red")#cambiamos el color de fondo de ese valor, es decir, el color de la fuente que nos muestra el valor
 
