@@ -17,9 +17,22 @@ class Aplicacion:
     self.valor2.grid(column=0, row=1)
     
     self.dato1 = tkinter.IntVar()
-    self.entrada1 = tkinter.Entry(self.dato1)
+    self.entrada1 = tkinter.Entry(self.ventana)
+    self.entrada1.grid(column=1,row=0)
+    
+    self.dato2 = tkinter.IntVar()
+    self.entrada2 = tkinter.Entry(self.ventana)
+    self.entrada2.grid(column=1, row=1)
+    
+    self.boton_suma = tkinter.Button(self.ventana, text="Sumar", command=self.suma)
+    self.boton_suma.grid(column=0, row=2)
     
     self.ventana.mainloop()
-    
+  
+  def suma(self):
+    self.total = (int(self.entrada1.get()) +
+                  int(self.entrada2.get()))
+    self.label_suma = tkinter.Label(self.ventana, text=self.total)
+    self.label_suma.grid(column=1, row=2)
     
 aplicacionChunga = Aplicacion()
