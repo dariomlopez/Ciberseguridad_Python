@@ -39,6 +39,4 @@ class App:
     
     
   
-
-  
 app = App()

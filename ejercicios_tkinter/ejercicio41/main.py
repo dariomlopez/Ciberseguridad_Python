@@ -11,37 +11,48 @@ Debe mostrar un menú con las siguientes opciones:
 
 import tkinter as tkinter
 from tkinter import ttk
+from agregarContacto import AgregarContacto
+from consultaContacto import ConsultarContacto
+from modificarContacto import ModificarContacto
+from finalizar import Finalizar
 #from agenda import Agenda
 
 # agenda = Agenda()
 # agenda.menu()
 
 class Main(ttk.Frame):
-  def __init__(self):
-    self.ventana = tkinter.Tk()
-    self.ventana.title("Agenda")
-    self.ventana.geometry("400x400")
+  def __init__(self, ventana):
+    super().__init__(ventana)
     
-    self.label_nombre = tkinter.Label(self.ventana, text="Introduce un nombre: ")
-    self.label_telf = tkinter.Label(self.ventana, text="Introduce el teléfono: ")
-    self.label_email = tkinter.Label(self.ventana, text="Introduce el email: ")
+    ventana.title("Agenda")
+    ventana.geometry("600x400")
     
-    self.label_nombre.grid(column=0, row=0)
-    self.label_telf.grid(column=0, row=1)
-    self.label_email.grid(column=0, row=2)
+    self.parentTab = ttk.Notebook(self)
     
-    self.nombre = tkinter.StringVar()
-    self.telefono = tkinter.IntVar()
-    self.email = tkinter.StringVar()
+    self.tabAgregar = AgregarContacto(self.parentTab)
+    self.tabListado = ttk.Label(self.parentTab, text="Lista completa de contactos")
+    self.tabConsulta = ConsultarContacto(self.parentTab)
+    self.tabModificar = ModificarContacto(self.parentTab)
+    self.tabFinalizar = Finalizar(self.parentTab)
     
-    self.entry_nombre = tkinter.Entry(self.ventana, width=25, textvariable=self.nombre)
-    self.entry_telf = tkinter.Entry(self.ventana, width=25, textvariable=self.telefono)
-    self.entry_email = tkinter.Entry(self.ventana, width=25, textvariable=self.email)
+    self.parentTab.add(self.tabAgregar, text="Agregar "
+                                                    "contacto",
+                       padding=100)
+    self.parentTab.add(self.tabListado, text="Listado completo de "
+                                             "contactos", padding=100)
+    self.parentTab.add(self.tabConsulta, text="Buscar contacto",
+                       padding=100)
+    self.parentTab.add(self.tabModificar, text="Modificar contacto",
+                       padding=100)
+    self.parentTab.add(self.tabFinalizar, text="Salir de la "
+                                               "aplicación",
+                       padding=100)
     
-    self.entry_nombre.grid(column=1, row=0)
-    self.entry_telf.grid(column=1, row=1)
-    self.entry_email.grid(column=1, row=2)
+    self.parentTab.pack(padx=0, pady=0)
+    self.pack()
+
     
-    self.ventana.mainloop()
-    
-aplicacion = Main()
+
+ventana = tkinter.Tk()
+aplicacion = Main(ventana)
+aplicacion.mainloop()
