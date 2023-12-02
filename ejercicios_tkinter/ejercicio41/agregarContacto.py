@@ -47,12 +47,6 @@ class AgregarContacto(tkinter.Frame):
       cursor = conn.cursor()
       
       try:
-        # cursor.execute("""
-        # delete database if exists test_agenda
-        # """)
-        # cursor.execute("""
-        # create database if not exists test_agenda
-        # """)
         cursor.execute("""
         drop table if exists agenda
         """)
