@@ -4,7 +4,7 @@ import sqlite3
 class AgregarContacto(tkinter.Frame):
   def __init__(self, parentTab):
     super().__init__(parentTab)
-    # tabAgregar = ttk.Label(parentTab, text="Agregar contacto")
+    
     self.label_nombre = tkinter.Label \
       (self, text="Introduce un nombre: ")
     self.label_telf = tkinter.Label \
