@@ -8,7 +8,7 @@ from tkinter import scrolledtext as st
 # importación de basededatos.py (módulo externo)
 import BBDDmysql as basededatos
 
-#CLASS ------------------------------------------------------------------------------
+# CLASS  -----------------------------------------------------------
 class FormularioArticulos:
     # método de inicialización de ventanas y otros parámetros (artículos)
     def __init__(self):
@@ -36,7 +36,7 @@ class FormularioArticulos:
     def agregar_articulos(self):
         # parametrización de frames
         self.pagina1 = ttk.Frame(self.cuaderno1)
-        self.cuaderno1.add(self.pagina1, text="Carga de artículos")
+        self.cuaderno1.add(self.pagina1, text="Agregar un artículo")
 
         self.labelFrame1 = ttk.LabelFrame(self.pagina1, text="Artículo")
         self.labelFrame1.grid(column=0, row=0, padx=5, pady=10)
@@ -63,18 +63,27 @@ class FormularioArticulos:
 
     def agregar(self):
         datos = (self.descripcioncarga.get(), self.preciocarga.get())
-        self.articulo1.agregar(datos)
+        mostrar_id = self.articulo1.agregar(datos)
         
         # valor auto-increment
-        valor_id = self.articulo1.conexion().last_insert_id()
+        # valor_id = self.articulo1.conexion().last_insert_id()
         # ventana messagebox
         mb.showinfo(
-            "Información", "El articulo fue agregado correctamente "
-                           "con id: " + str(valor_id))
+            "Información", f"El articulo fue agregado correctamente con id: {mostrar_id}")
         # datos
         self.descripcioncarga.set("")
         self.preciocarga.set("")
-
+    
+    # función para agregar varios articulos
+    def agregar_varios(self):
+        datos = [
+            (self.descripcioncarga.get(), self.preciocarga.get()),
+            (self.descripcioncarga.get(), self.preciocarga.get()),
+            (self.descripcioncarga.get(), self.preciocarga.get())
+        ]
+        self.articulo1.agregar_varios(datos)
+      
+    
     # método de consulta de artículos por código
     def consulta_por_codigo(self):
         # parametrización de frames

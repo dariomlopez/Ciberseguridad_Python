@@ -3,33 +3,38 @@ import mysql.connector
 
 class Articulos:
   
+  # conexión a la base de datos
   def conexion(self):
     conn = mysql.connector.connect(host="localhost",
                                    user="root",
                                    password="",
                                    database="test")
     return conn
-
+  # agregar un articulo
   def agregar(self, datos):
     conn = self.conexion()
     cursor = conn.cursor()
+    
     cursor.execute("insert into articulos (descripcion, precio) "
                    "values (%s, %s)", datos)
-    
     conn.commit()
+    cursor.execute("select last_insert_id()")
+    last_id = cursor.fetchone()[0]
+    
     conn.close()
+    return last_id
     
   def agregar_varios(self, datos):
     conn = self.conexion()
     cursor = conn.cursor()
-    cursor.execute(
+    cursor.executemany(
       "insert into articulos (descripcion, precio) "
       "values (%s, %s)", datos)
     
     conn.commit()
     conn.close()
-    
-
+  
+  # consultar un articulo por id
   def consulta_articulo(self, datos):
     conn = self.conexion()
     try:
@@ -39,6 +44,7 @@ class Articulos:
     finally:
       conn.close()
     
+  # función que devuelve todos los articulos existentes
   def consultar_todos(self):
     conn = self.conexion()
     try:
@@ -48,7 +54,8 @@ class Articulos:
       return cursor.fetchall()
     finally:
       conn.close()
-      
+  
+  # función para quitar una articulo por id
   def quitar_articulo(self, datos):
     conn = self.conexion()
     try:
@@ -60,6 +67,7 @@ class Articulos:
     finally:
       conn.close()
       
+  # función para modificar una articulo
   def modificar_articulo(self, datos):
     conn = self.conexion()
     try:
@@ -69,5 +77,51 @@ class Articulos:
         "id = %s", datos)
       conn.commit()
       return cursor.rowcount
+    finally:
+      conn.close()
+  
+  # función para crear una base de datos
+  def crear_basedatos(self, nombre_db):
+    conn = self.conexion()
+    try:
+      cursor = conn.cursor()
+      cursor.execute(
+        f"create database {nombre_db}")
+    finally:
+      conn.close()
+  
+  # función para borrar una base de datos
+  def borrar_basedatos(self, nombre_db):
+    conn = self.conexion()
+    try:
+      cursor = conn.cursor()
+      cursor.execute(
+        f"drop database {nombre_db}")
+    finally:
+      conn.close()
+      
+  # funcion para crear una tabla
+  def crear_tabla(self, nombre_db, nombre_tabla, columnas):
+    conn = self.conexion()
+    try:
+      cursor = conn.cursor()
+      cursor.executemany(f"use {nombre_db};"
+                         f"create table {nombre_tabla} (%s)",
+                         columnas)
+      conn.commit()
+    finally:
+      conn.close()
+      
+  # funcion para borrar una tabla y crear otra del mismo nombre
+  def borrar_crear_tabla(self, nombre_db, nombre_tabla, columnas):
+    conn = self.conexion()
+    try:
+      cursor = conn.cursor()
+      cursor.execute(f"drop table if exists {nombre_tabla}")
+      cursor.executemany(
+        f"use {nombre_db};"
+        f"create table {nombre_tabla} (%s)",
+        columnas)
+      conn.commit()
     finally:
       conn.close()
