@@ -12,7 +12,7 @@ import BBDDmysql as basededatos
 class FormularioArticulos:
     # método de inicialización de ventanas y otros parámetros (artículos)
     def __init__(self):
-        # adquiriendo artículos
+        # adquiriendo los metodos de la clase Articulos
         self.articulo1 = basededatos.Articulos()
 
         # parametrización de ventana & pestañas
@@ -28,11 +28,15 @@ class FormularioArticulos:
         self.listado_completo()
         self.borrado()
         self.modificar()
-
+        self.ventana_crear_DB()
+        self.ventana_borrar_DB()
+        self.ventana_crear_tabla()
+        self.ventana_borrar_tabla()
+        
         # "arranque" de la ventana
         self.ventana1.mainloop()
 
-    # método de carga de artículos (alta de nuevos artículos)
+    # creación de ventana para agregar nuevos articulos
     def agregar_articulos(self):
         # parametrización de frames
         self.pagina1 = ttk.Frame(self.cuaderno1)
@@ -57,10 +61,12 @@ class FormularioArticulos:
         self.entryprecio = ttk.Entry(self.labelFrame1, textvariable=self.preciocarga)
         self.entryprecio.grid(column=1, row=1, padx=4, pady=4)
 
-        # botón de confirmación para agregar el artículo
+        # botón de confirmación para agregar el artículo y llamada
+        # a función
         self.boton1 = ttk.Button(self.labelFrame1, text="Confirmar", command=self.agregar)
         self.boton1.grid(column=1, row=2, padx=4, pady=4)
-
+    
+    # función para agregar artículos
     def agregar(self):
         datos = (self.descripcioncarga.get(), self.preciocarga.get())
         mostrar_id = self.articulo1.agregar(datos)
@@ -252,6 +258,138 @@ class FormularioArticulos:
             self.preciomod.set('')
             mb.showinfo("Información", "No existe un artículo con dicho código")
 
-
+    # ---------ventana crear base de datos --------------------------
+    def ventana_crear_DB(self):
+        self.pagina6 = ttk.Frame(self.cuaderno1)
+        self.cuaderno1.add(self.pagina6, text="Crear base de datos")
+        
+        self.labelframe6 = ttk.LabelFrame(self.pagina6,text="Base de datos")
+        self.labelframe6.grid(column=0, row=0, padx=5, pady=10)
+        
+        self.nombre_db = tk.StringVar()
+      
+        self.label1 = ttk.Label(self.labelframe6, text="Nombre de la base de datos")
+        self.label1.grid(column=0, row=0, padx=5, pady=10)
+        
+        self.entry1 = ttk.Entry(self.labelframe6,
+                                textvariable=self.nombre_db)
+        self.entry1.grid(column=0, row=1)
+      
+        self.boton1 = ttk.Button(self.labelframe6, text="Crear base de datos", command=self.crear_DB)
+        self.boton1.grid(column=0, row=2)
+      
+    def crear_DB(self):
+        nombre_db = self.nombre_db.get()
+        
+        # llamada a la función con el nombre
+        query = self.articulo1.crear_basedatos(nombre_db)
+      
+        mb.showinfo("Información", f"Se creo base de datos con nombre: {nombre_db}")
+        # TODO: Mensaje de error si la base de datos ya existe
+        
+        self.nombre_db.set("")
+    
+    #------------ Ventana borrar base de datos------------
+    def ventana_borrar_DB(self):
+        self.pagina7 = ttk.Frame(self.cuaderno1)
+        self.cuaderno1.add(self.pagina7, text="Borrar base de datos")
+        
+        self.labelframe7 = ttk.LabelFrame(self.pagina7, text="Base de datos")
+        self.labelframe7.grid(column=0, row=0, padx=5, pady=10)
+        
+        self.nombreBorrar_db = tk.StringVar()
+        
+        self.label1 = ttk.Label(self.labelframe7, text="Nombre de la base de datos")
+        self.label1.grid(column=0, row=0, padx=5, pady=10)
+        
+        self.entry1 = ttk.Entry(
+            self.labelframe7,
+            textvariable=self.nombreBorrar_db)
+        self.entry1.grid(column=0, row=1)
+        
+        self.boton1 = ttk.Button(self.labelframe7, text="Borrar base de datos", command=self.borrar_DB)
+        self.boton1.grid(column=0, row=2)
+      
+    def borrar_DB(self):
+        nombre_db = self.nombreBorrar_db.get()
+        
+        # llamada a la función con el nombre
+        query = self.articulo1.borrar_basedatos(nombre_db)
+        
+        mb.showinfo("Información", f"Se elimino base de datos con nombre: {nombre_db}")
+        # TODO: mensaje de error si la base de datos ya existe
+        # dar la posibilidad de ponerle otro nombre (?)
+        
+        self.nombreBorrar_db.set("")
+      
+    # ---- función de la ventana crear tabla --------------------
+    def ventana_crear_tabla(self):
+        self.pagina8 = ttk.Frame(self.cuaderno1)
+        self.cuaderno1.add(self.pagina8, text="Crear tabla")
+        
+        self.labelframe8 = ttk.LabelFrame(self.pagina8, text="Creación de tabla")
+        self.labelframe8.grid(column=0, row=0)
+      
+        self.nombre_tabla = tk.StringVar()
+        self.name_db = tk.StringVar()
+        # self.columnas = tk.StringVar()
+      
+        self.label1 = ttk.Label(self.labelframe8, text="Nombre de tabla")
+        self.label1.grid(column=0, row=0)
+        self.label2 = ttk.Label(self.labelframe8, text="Nombre de la base de datos \ndonde crear la tabla")
+        self.label2.grid(column=0, row=1)
+        # self.label3 = ttk.Label(self.labelframe8, text="Columnas de la tabla")
+        # self.label3.grid(column=0, row=2)
+      
+        self.entry_tabla = ttk.Entry(self.labelframe8, textvariable=self.nombre_tabla)
+        self.entry_tabla.grid(column=1, row=0)
+        self.entry_db = ttk.Entry(self.labelframe8, textvariable=self.name_db)
+        self.entry_db.grid(column=1, row=1)
+        # self.entry_columnas = ttk.Entry(self.labelframe8, textvariable=self.columnas)
+        #self.entry_columnas.grid(column=1, row=2)
+        
+        self.boton1 = ttk.Button(self.labelframe8, text="Crear tabla", command=self.crear_tabla)
+        self.boton1.grid(column=1, row=3)
+    
+    def crear_tabla(self):
+        name_db = self.name_db.get()
+        name_table = self.nombre_tabla.get()
+        # TODO:
+        ''' TODO: ¿como hacer que el usuario eliga cuántas tablas crear?
+        if (len(self.columnas = tk.StringVar() >= 1):
+            crear tantos entries como el número indicado(?)
+        else:
+            crear una columna por defecto'''
+        columnas = "id int auto_increment primary key"
+        query_tabla = self.articulo1.crear_tabla(name_db, name_table, columnas)
+      
+        mb.showinfo("Información", f"Se creo la tabla {name_table}")
+    # ------- ventana borrar tabla -------------------
+    def ventana_borrar_tabla(self):
+        self.pagina9 = ttk.Frame(self.cuaderno1)
+        self.cuaderno1.add(self.pagina9, text="Borrar tabla")
+        
+        self.labelframe9 = ttk.LabelFrame(self.pagina9, text="Borrar una tabla")
+        self.labelframe9.grid(column=0, row=0)
+    
+        self.nombre_tabla_borrar = tk.StringVar()
+        
+        self.label1 = ttk.Label(self.labelframe9, text="Nombre de tabla")
+        self.label1.grid(column=0, row=0)
+        
+        self.entry_tabla = ttk.Entry(self.labelframe9, textvariable=self.nombre_tabla_borrar)
+        self.entry_tabla.grid(column=1, row=0)
+        
+        self.boton1 = ttk.Button(self.labelframe9, text="Borrar tabla", command=self.borrar_tabla)
+        self.boton1.grid(column=1, row=3)
+    
+    def borrar_tabla(self):
+        dato = self.nombre_tabla_borrar.get()
+      
+        query = self.articulo1.borrar_crear_tabla(dato)
+      
+        mb.showinfo("Información", f"Se ha borrado la tabla {dato}")
+        # TODO: manejar error si la tabla no está en la base de datos a la que estamos conectados
+        
 # ARRANQUE APP ------------------------------------------------------------------------------
 aplicacion1 = FormularioArticulos()

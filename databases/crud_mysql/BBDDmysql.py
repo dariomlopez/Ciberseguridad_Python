@@ -10,6 +10,7 @@ class Articulos:
                                    password="",
                                    database="test")
     return conn
+  
   # agregar un articulo
   def agregar(self, datos):
     conn = self.conexion()
@@ -86,7 +87,7 @@ class Articulos:
     try:
       cursor = conn.cursor()
       cursor.execute(
-        f"create database {nombre_db}")
+        f"create database `{nombre_db}`")
     finally:
       conn.close()
   
@@ -105,23 +106,20 @@ class Articulos:
     conn = self.conexion()
     try:
       cursor = conn.cursor()
-      cursor.executemany(f"use {nombre_db};"
-                         f"create table {nombre_tabla} (%s)",
-                         columnas)
+      cursor.execute(f"use {nombre_db}")
+      cursor.execute(f"create table {nombre_tabla} ({columnas})")
       conn.commit()
     finally:
       conn.close()
       
   # funcion para borrar una tabla y crear otra del mismo nombre
-  def borrar_crear_tabla(self, nombre_db, nombre_tabla, columnas):
+  def borrar_crear_tabla(self, nombre_tabla):
     conn = self.conexion()
     try:
       cursor = conn.cursor()
       cursor.execute(f"drop table if exists {nombre_tabla}")
-      cursor.executemany(
-        f"use {nombre_db};"
-        f"create table {nombre_tabla} (%s)",
-        columnas)
+      # cursor.execute(
+      #   f"create table {nombre_tabla}")
       conn.commit()
     finally:
       conn.close()
