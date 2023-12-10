@@ -355,7 +355,8 @@ class FormularioArticulos:
         name_db = self.name_db.get()
         name_table = self.nombre_tabla.get()
         # TODO:
-        ''' TODO: ¿como hacer que el usuario eliga cuántas tablas crear?
+        # Que la tabla se cree en la base de datos a la que esta hecha la conexión
+        ''' TODO: ¿como hacer que el usuario eliga cuántas columnas crear?
         if (len(self.columnas = tk.StringVar() >= 1):
             crear tantos entries como el número indicado(?)
         else:
