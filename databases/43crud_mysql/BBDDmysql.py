@@ -19,6 +19,8 @@ class Articulos:
     cursor.execute("insert into articulos (descripcion, precio) "
                    "values (%s, %s)", datos)
     conn.commit()
+    # Recuperar última fila afectada
+    # cursor.lastrowid
     cursor.execute("select last_insert_id()")
     last_id = cursor.fetchone()[0]
     
@@ -28,9 +30,11 @@ class Articulos:
   def agregar_varios(self, datos):
     conn = self.conexion()
     cursor = conn.cursor()
-    cursor.executemany(
-      "insert into articulos (descripcion, precio) "
-      "values (%s, %s)", datos)
+    
+    # datos = [ ("Bici", 450), ("Chalecos", 50), ("Barbas", 670), ("Ojos", 810), ("Botellas", 45),  ]
+    
+    query = "insert into articulos (descripcion, precio) values (%s, %s)"
+    cursor.executemany(query, datos)
     
     conn.commit()
     conn.close()

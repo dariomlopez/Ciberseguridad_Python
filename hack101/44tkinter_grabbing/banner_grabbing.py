@@ -4,7 +4,7 @@ import socket
 
 def bannerGrabber(ip):
   results = {}
-  with open("C:/Users/junky/Desktop/Ciberseguridad y hacking/Python/hack101/tkinter_grabbing/ports.txt", "r") as ports:
+  with open("/hack101/44tkinter_grabbing/ports.txt", "r") as ports:
     for port in ports:
       port = int(port.strip())
       try:

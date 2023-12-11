@@ -80,6 +80,13 @@ class FormularioArticulos:
         self.descripcioncarga.set("")
         self.preciocarga.set("")
     
+    
+    ## ventana crear varios articulos----
+    # TODO:
+    '''
+    Preguntar al usuario cuántos articulos quiere agregar de una sola vez y crear las entrys necesarias
+    '''
+    
     # función para agregar varios articulos
     def agregar_varios(self):
         datos = [
