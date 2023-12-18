@@ -12,6 +12,7 @@ Debe mostrar un menú con las siguientes opciones:
 import tkinter as tkinter
 from tkinter import ttk
 from agregarContacto import AgregarContacto
+from listaContactos import ListaContactos
 from consultaContacto import ConsultarContacto
 from modificarContacto import ModificarContacto
 from finalizar import Finalizar
@@ -25,12 +26,12 @@ class Main(ttk.Frame):
     super().__init__(ventana)
     
     ventana.title("Agenda")
-    ventana.geometry("600x400")
+    ventana.geometry("900x600")
     
     self.parentTab = ttk.Notebook(self)
     
     self.tabAgregar = AgregarContacto(self.parentTab)
-    self.tabListado = ttk.Label(self.parentTab, text="Lista completa de contactos")
+    self.tabListado = ListaContactos(self.parentTab)
     self.tabConsulta = ConsultarContacto(self.parentTab)
     self.tabModificar = ModificarContacto(self.parentTab)
     self.tabFinalizar = Finalizar(self.parentTab)
@@ -39,9 +40,9 @@ class Main(ttk.Frame):
                                                     "contacto",
                        padding=100)
     self.parentTab.add(self.tabListado, text="Listado completo de "
-                                             "contactos", padding=100)
+                                             "contactos", padding=10)
     self.parentTab.add(self.tabConsulta, text="Buscar contacto",
-                       padding=100)
+                       padding=10)
     self.parentTab.add(self.tabModificar, text="Modificar contacto",
                        padding=100)
     self.parentTab.add(self.tabFinalizar, text="Salir de la "
