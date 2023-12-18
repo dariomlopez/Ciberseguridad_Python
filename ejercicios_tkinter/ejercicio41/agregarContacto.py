@@ -33,8 +33,7 @@ class AgregarContacto(tkinter.Frame):
     self.entry_telf.grid(column=1, row=1)
     self.entry_email.grid(column=1, row=2)
     
-    boton_guardar = tkinter.Button(self, text="Guardar",
-                                   command=self.guardarContacto)
+    boton_guardar = tkinter.Button(self, text="Guardar", command=self.guardarContacto)
     boton_guardar.grid(column=1, row=3)
     
   def guardarContacto(self):
@@ -42,14 +41,13 @@ class AgregarContacto(tkinter.Frame):
       telefono = self.entry_telf.get()
       email = self.entry_email.get()
       
-      conn = sqlite3.connect("C:/Users/junky/Desktop/Ciberseguridad y "
-                             "hacking/Python/ejercicios_tkinter/ejercicio41/agendaDB.db")
+      conn = sqlite3.connect("C:/Users/junky/Desktop/Ciberseguridad y hacking/Python/ejercicios_tkinter/ejercicio41/agendaDB.db")
       cursor = conn.cursor()
       
       try:
-        cursor.execute("""
-        drop table if exists agenda
-        """)
+        # cursor.execute("""
+        # drop table if exists agenda
+        # """)
         cursor.execute("""
         create table if not exists agenda (
           id integer primary key autoincrement,
@@ -59,7 +57,7 @@ class AgregarContacto(tkinter.Frame):
         )
         """)
         cursor.execute("""insert into agenda (nombre, telefono, email)
-        values (?,?,?)""", (nombre, telefono,email))
+        values (?,?,?)""", (nombre, telefono, email))
         
         conn.commit()
     
