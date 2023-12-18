@@ -15,6 +15,7 @@ from agregarContacto import AgregarContacto
 from listaContactos import ListaContactos
 from consultaContacto import ConsultarContacto
 from modificarContacto import ModificarContacto
+from borrarContacto import BorrarContacto
 from finalizar import Finalizar
 #from agenda import Agenda
 
@@ -34,6 +35,7 @@ class Main(ttk.Frame):
     self.tabListado = ListaContactos(self.parentTab)
     self.tabConsulta = ConsultarContacto(self.parentTab)
     self.tabModificar = ModificarContacto(self.parentTab)
+    self.tabBorrar = BorrarContacto(self.parentTab)
     self.tabFinalizar = Finalizar(self.parentTab)
     
     self.parentTab.add(self.tabAgregar, text="Agregar "
@@ -45,6 +47,9 @@ class Main(ttk.Frame):
                        padding=10)
     self.parentTab.add(self.tabModificar, text="Modificar contacto",
                        padding=100)
+    self.parentTab.add(
+      self.tabBorrar, text="Borrar contacto",
+      padding=100)
     self.parentTab.add(self.tabFinalizar, text="Salir de la "
                                                "aplicación",
                        padding=100)

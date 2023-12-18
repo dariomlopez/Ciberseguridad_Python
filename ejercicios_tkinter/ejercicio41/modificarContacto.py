@@ -1,5 +1,6 @@
+import sqlite3
 import tkinter as tkinter
-
+from tkinter import scrolledtext as st
 
 class ModificarContacto(tkinter.Frame):
   def __init__(self, parentTab):
@@ -31,5 +32,43 @@ class ModificarContacto(tkinter.Frame):
     self.label_email.pack()
     self.entry_email.pack()
     
-    self.botonBuscar = tkinter.Button(self, text="Buscar")
-    self.botonBuscar.pack()
+    self.botonMod = tkinter.Button(self, text="Modificar", command=self.modificarContacto)
+    self.botonMod.pack()
+    self.scrolledtext = st.ScrolledText(self)
+    self.scrolledtext.pack()
+  
+  def modificarContacto(self):
+    nombre = self.entry_nombre.get()
+    telf = self.entry_telf.get()
+    email = self.entry_email.get()
+    nombre_mod = self.entry_nombre.get()
+    telf_mod = self.entry_telf.get()
+    email_mod = self.entry_email.get()
+    
+    conn = sqlite3.connect("C:/Users/junky/Desktop/Ciberseguridad y hacking/Python/ejercicios_tkinter/ejercicio41/agendaDB.db")
+    cursor = conn.cursor()
+    try:
+      query= f"""
+          update agenda
+          set nombre = ?,
+            telefono= ?,
+            email = ?
+          where nombre = ?
+            or telefono= ?
+            or email = ?
+        """
+    
+      cursor.execute(query, (nombre_mod, telf_mod, email_mod, nombre, telf, email))
+      conn.commit()
+      
+      cursor.execute("SELECT * FROM agenda")
+      datos_mod = cursor.fetchall()
+      
+      for idx, contact in enumerate(datos_mod):
+          contact_mod = (f"ID: {contact[0]},\n"
+                          f"Nombre: {contact[1]},\n"
+                          f"Teléfono: {contact[2]},\n"
+                          f"Email: {contact[3]}\n")
+          self.scrolledtext.insert(tkinter.END, contact_mod)
+    finally:
+      conn.close()
