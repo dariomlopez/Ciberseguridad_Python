@@ -64,7 +64,7 @@ class ConsultarContacto(tkinter.Frame):
       """
       params = (id, nombre, telf, email)
       cursor.execute(query, params)
-      resultado = (cursor.fetchall())
+      resultado = cursor.fetchall()
       self.scrolledtext.delete("1.0", tkinter.END)
       for idx, contact in enumerate(resultado):
         contact_info = (f"ID: {contact[0]},\n"
