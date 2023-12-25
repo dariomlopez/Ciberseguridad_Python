@@ -35,21 +35,12 @@ class BorrarContacto(tkinter.Frame):
     try:
       query = f"""
           delete from agenda
-          where id = ?,
-            nombre = ?
+          where id = ?
+            and nombre = ?
         """
       
       cursor.execute(query, (id_cod, nombre))
       conn.commit()
       
-      # cursor.execute("SELECT * FROM agenda")
-      # datos_mod = cursor.fetchall()
-      #
-      # for idx, contact in enumerate(datos_mod):
-      #   contact_mod = (f"ID: {contact[0]},\n"
-      #                  f"Nombre: {contact[1]},\n"
-      #                  f"Teléfono: {contact[2]},\n"
-      #                  f"Email: {contact[3]}\n")
-      #   self.scrolledtext.insert(tkinter.END, contact_mod)
     finally:
       conn.close()

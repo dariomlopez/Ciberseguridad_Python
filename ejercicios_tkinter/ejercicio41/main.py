@@ -38,21 +38,12 @@ class Main(ttk.Frame):
     self.tabBorrar = BorrarContacto(self.parentTab)
     self.tabFinalizar = Finalizar(self.parentTab)
     
-    self.parentTab.add(self.tabAgregar, text="Agregar "
-                                                    "contacto",
-                       padding=100)
-    self.parentTab.add(self.tabListado, text="Listado completo de "
-                                             "contactos", padding=10)
-    self.parentTab.add(self.tabConsulta, text="Buscar contacto",
-                       padding=10)
-    self.parentTab.add(self.tabModificar, text="Modificar contacto",
-                       padding=100)
-    self.parentTab.add(
-      self.tabBorrar, text="Borrar contacto",
-      padding=100)
-    self.parentTab.add(self.tabFinalizar, text="Salir de la "
-                                               "aplicación",
-                       padding=100)
+    self.parentTab.add(self.tabAgregar, text="Agregar contacto", padding=100)
+    self.parentTab.add(self.tabListado, text="Listado completo de contactos", padding=10)
+    self.parentTab.add(self.tabConsulta, text="Buscar contacto", padding=10)
+    self.parentTab.add(self.tabModificar, text="Modificar contacto", padding=100)
+    self.parentTab.add(self.tabBorrar, text="Borrar contacto", padding=100)
+    self.parentTab.add(self.tabFinalizar, text="Salir de la aplicación", padding=100)
     
     self.parentTab.pack(padx=0, pady=0)
     self.pack()
