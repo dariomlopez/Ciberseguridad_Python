@@ -17,10 +17,6 @@ from consultaContacto import ConsultarContacto
 from modificarContacto import ModificarContacto
 from borrarContacto import BorrarContacto
 from finalizar import Finalizar
-#from agenda import Agenda
-
-# agenda = Agenda()
-# agenda.menu()
 
 class Main(ttk.Frame):
   def __init__(self, ventana):

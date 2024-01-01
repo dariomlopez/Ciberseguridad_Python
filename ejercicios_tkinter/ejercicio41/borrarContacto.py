@@ -22,7 +22,6 @@ class BorrarContacto(tkinter.Frame):
     self.label_nombre.pack()
     self.entry_nombre.pack()
    
-    
     self.botonBorrar = tkinter.Button(self, text="Borrar", command=self.eliminarContacto)
     self.botonBorrar.pack()
   
